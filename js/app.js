@@ -28,7 +28,6 @@ function shuffle(array) {
   return array;
 }
 
-// Initial Game
 function initGame() {
     console.log('game initGame');
   var cards = shuffle(symbols);
@@ -43,7 +42,6 @@ function initGame() {
 	addCardListener();
 };
 
-// Set Rating and final Score
 function setRating(moves) {
 	var rating = 3;
 	if (moves > rank3stars && moves < rank2stars) {
@@ -59,12 +57,10 @@ function setRating(moves) {
 	return { score: rating };
 };
 
-// End Game
 function endGame(moves, score) {
     $winner.append($('<p>Winner, With ' + moves + ' Moves and ' + score + ' Stars.</p>'))
 }
 
-// Restart Game
 $restart.bind('click', function() {
   initGame();
 });
@@ -82,7 +78,6 @@ $deck.find('.card:not(".match, .open")').bind('click' , function() {
   $this.addClass('open show');
 	opened.push(card);
 
-	// Compare with opened card
   if (opened.length > 1) {
     if (card === opened[0]) {
       $deck.find('.open').addClass('match animated infinite rubberBand');
@@ -105,7 +100,7 @@ $deck.find('.card:not(".match, .open")').bind('click' , function() {
 		$moveNum.html(moves);
   }
 	
-	// End Game if match all cards
+	
 	if (gameCardsQTY === match) {
 		setRating(moves);
 		var score = setRating(moves).score;
